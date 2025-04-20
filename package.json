@@ -1,0 +1,20 @@
+{
+  "name": "flask_tailwind_daisyui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./app/static/src/input.css -o ./app/static/css/output.css --minify",
+    "dev": "tailwindcss -i ./app/static/src/input.css -o ./app/static/css/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "daisyui": "^3.9.4",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  }
+}

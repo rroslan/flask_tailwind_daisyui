@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero min-h-[50vh] bg-base-200 rounded-lg">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-5xl font-bold">Welcome to Our Site</h1>
+      <p class="py-6">Explore our services and get in touch with us</p>
+      <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Contact Us</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="max-w-3xl mx-auto">
+    <div class="bg-base-100 rounded-2xl shadow-xl overflow-hidden">
+      <div class="p-8 sm:p-10">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Get in Touch</h2>
+          <p class="text-lg text-gray-500">We'll respond within 24 hours</p>
+        </div>
+      
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} mb-4">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form method="POST" action="{{ url_for('main.contact') }}">
+        <div class="form-control mb-8">
+          <label class="label" for="name">
+            <span class="label-text text-lg font-medium">Your Name</span>
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              placeholder="John Doe" 
+              class="input input-bordered w-full focus:input-primary focus:ring-2 focus:ring-primary/50 transition-all duration-300 hover:border-primary/50 text-lg py-3 px-4"
+              required
+            >
+            <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.42 0-8 3.5-8 7h16c0-3.5-3.58-7-8-7z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-control mb-6">
+          <label class="label" for="contact_info">
+            <span class="label-text text-lg font-medium">Email or Phone</span>
+          </label>
+          <input 
+            type="text" 
+            id="contact_info" 
+            name="contact_info" 
+            placeholder="email@example.com or +1234567890" 
+            class="input input-bordered w-full focus:input-primary focus:ring-2 focus:ring-primary/50 transition-all duration-300 hover:border-primary/50"
+            required
+          >
+        </div>
+
+        <div class="form-control mb-8">
+          <label class="label" for="message">
+            <span class="label-text text-lg font-medium">Your Message</span>
+          </label>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="5" 
+            class="textarea textarea-bordered w-full focus:textarea-primary focus:ring-2 focus:ring-primary/50 transition-all duration-300 hover:border-primary/50"
+            placeholder="Your message here..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="card-actions justify-end">
+          <button type="submit" class="btn btn-primary px-8 py-3 text-lg hover:scale-[1.02] active:scale-[0.98] transition-transform">
+            <span class="loading loading-spinner hidden"></span>
+            <span class="btn-text">Send Message</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
