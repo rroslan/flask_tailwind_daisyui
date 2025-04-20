@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-[calc(100vh-200px)]">
+    <div class="card w-full max-w-md bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title text-2xl mb-4">Login or Register</h2>
+            <p class="mb-6">Enter your email address to receive a magic link</p>
+            
+            <form method="POST" action="{{ url_for('auth.auth') }}">
+                <div class="form-control w-full">
+                    <label class="label">
+                        <span class="label-text">Email Address</span>
+                    </label>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="your@email.com" 
+                        class="input input-bordered w-full focus:border-primary focus:ring-1 focus:ring-primary" 
+                        required
+                    />
+                </div>
+                
+                <button type="submit" class="btn btn-primary mt-6 w-full">
+                    Send Magic Link
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

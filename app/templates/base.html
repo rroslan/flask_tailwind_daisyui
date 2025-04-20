@@ -28,6 +28,26 @@
                         Contact
                     </a>
                 </li>
+                {% if current_user.is_authenticated %}
+                <li>
+                    <details class="dropdown dropdown-end">
+                        <summary class="hover:bg-primary/10 rounded-btn">
+                            <span class="font-medium">{{ current_user.email }}</span>
+                        </summary>
+                        <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                            <li><a href="/profile" class="hover:bg-primary/10 active:bg-primary/20">My Profile</a></li>
+                            <li><a href="{{ url_for('auth.logout') }}" class="text-error hover:bg-error/10 active:bg-error/20">Logout</a></li>
+                        </ul>
+                    </details>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{{ url_for('auth.auth') }}" 
+                       class="{{ 'active' if request.path == url_for('auth.auth') else '' }} hover:bg-primary/10 rounded-btn">
+                        Login/Register
+                    </a>
+                </li>
+                {% endif %}
                 <li>
                     <details class="dropdown dropdown-end">
                         <summary class="hover:bg-primary/10 rounded-btn">More</summary>
@@ -49,6 +69,12 @@
                 <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="{{ url_for('main.index') }}">Home</a></li>
                     <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+                    {% if current_user.is_authenticated %}
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}" class="text-error">Logout</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('auth.auth') }}">Login/Register</a></li>
+                    {% endif %}
                     <li><a>About</a></li>
                 </ul>
             </div>

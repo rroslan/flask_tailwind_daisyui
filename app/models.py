@@ -39,7 +39,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     email = db.Column(db.String(120), index=True, unique=True, nullable=False)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(256))
     created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, 
                           onupdate=datetime.utcnow)
@@ -47,6 +47,26 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
+
+    # Flask-Login required properties and methods
+    @property
+    def is_authenticated(self):
+        """Return True if the user is authenticated"""
+        return True
+
+    @property
+    def is_active(self):
+        """Return True if the user account is active"""
+        return True
+
+    @property
+    def is_anonymous(self):
+        """Return False as anonymous users aren't supported"""
+        return False
+
+    def get_id(self):
+        """Return the user ID as a string"""
+        return str(self.id)
 
     def set_password(self, password):
         """Create hashed password"""
